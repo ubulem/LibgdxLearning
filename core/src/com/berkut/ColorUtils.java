@@ -1,8 +1,8 @@
 package com.berkut;
 
-public class ColorUtils {
-    public static float[] RgbToHsl(float r, float g, float b, float a) {
-        float h = 0, s = 0, l = 0;
+class ColorUtils {
+    static float[] RgbToHsl(float r, float g, float b, float a) {
+        float h = 0, s = 0, l;
 
         float max = Math.max(r, Math.max(g, b));
         float min = Math.min(r, Math.min(g, b));
@@ -41,7 +41,7 @@ public class ColorUtils {
         return result;
     }
 
-    public static float[] HslToRgb(float h, float s, float l, float a) {
+    static float[] HslToRgb(float h, float s, float l, float a) {
         float[] result = new float[4];
         if (s == 0) {
             result[0] = l;
@@ -52,11 +52,10 @@ public class ColorUtils {
             float q = (l < 0.5f) ? (l * (1.0f + s)) : (l + s - (l * s));
             float p = (2.0f * l) - q;
 
-            float Hk = h;
             float[] T = new float[3];
-            T[0] = Hk + (1.0f / 3.0f);    // Tr
-            T[1] = Hk;                    // Tb
-            T[2] = Hk - (1.0f / 3.0f);    // Tg
+            T[0] = h + (1.0f / 3.0f);    // Tr
+            T[1] = h;                    // Tb
+            T[2] = h - (1.0f / 3.0f);    // Tg
 
             for (int i = 0; i < 3; i++) {
                 if (T[i] < 0)

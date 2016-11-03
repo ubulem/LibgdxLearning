@@ -8,49 +8,47 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
-public class Heart {
-    public Body Body;
-    public Sprite Sprite;
-    public Vector2 Size;
-    public String String;
-    public BitmapFont Font;
-    public ParticleEffect ParticleEffect;
-    public Sound BreakSound;
+class Heart {
+    Body Body;
+    Sprite Sprite;
+    Vector2 Size;
+    String String;
+    ParticleEffect ParticleEffect;
+    Sound BreakSound;
 
-    protected Vector2 stringSize;
-    protected float deathAngle;
-    protected Vector2 deathPos;
+    private Vector2 stringSize;
+    private float deathAngle;
+    private Vector2 deathPos;
 
-    public float getDeathAngle() {
+    float getDeathAngle() {
         return deathAngle;
     }
 
-    public Vector2 getDeathPos() {
+    Vector2 getDeathPos() {
         return deathPos;
     }
 
-    public Heart(Body body, Sprite sprite, Vector2 size,
-                 String string, BitmapFont font, ParticleEffect particleEffect,
-                 Sound breakSound) {
+    Heart(Body body, Sprite sprite, Vector2 size,
+          String string, BitmapFont font, ParticleEffect particleEffect,
+          Sound breakSound) {
         Body = body;
         Sprite = sprite;
         Size = size;
         String = string;
-        Font = font;
         GlyphLayout layout = new GlyphLayout();
-        layout.setText(Font, string);
+        layout.setText(font, string);
         stringSize = new Vector2(
-                layout.width * Size.x * Love.FontSizeHeartSizeCoef.x,
-                layout.height * Size.y * Love.FontSizeHeartSizeCoef.y);
+                layout.width * Size.x * Love.FontSizeHeartSizeFactor.x,
+                layout.height * Size.y * Love.FontSizeHeartSizeFactor.y);
         ParticleEffect = particleEffect;
         BreakSound = breakSound;
     }
 
-    public Vector2 getStringSize() {
+    Vector2 getStringSize() {
         return stringSize;
     }
 
-    public void destroy() {
+    void destroy() {
         deathAngle = Body.getAngle();
         deathPos = Body.getPosition();
     }

@@ -40,14 +40,14 @@ import java.util.List;
 import java.util.Map;
 
 class Love implements ApplicationListener, InputProcessor {
-    private final static float gravityCoef = 250f;
+    private final static float gravityFactor = 250f;
     private final static int initialHeartCount = 10;
     private final static float PhysWorldWidth = 80;
     private final static float PhysWorldHeight = 48;
 
     private final static float HeartMinSize = 12;
     private final static float HeartMaxSize = 20;
-    private final static float HeartHeightWidthCoef = 1.0f;
+    private final static float HeartHeightWidthFactor = 1.0f;
 
     private final static float[] HeartHues = new float[]
             {0, 8.0f / 360.0f, 16.0f / 360.0f, 320.0f / 360.0f, 333.0f / 360.0f};
@@ -57,9 +57,9 @@ class Love implements ApplicationListener, InputProcessor {
 
     private List<String> heartWords;
 
-    private final static Vector2 CenterDisplacement = new Vector2(128.0f / 256.0f, 150.0f / 256.0f * HeartHeightWidthCoef);
+    private final static Vector2 CenterDisplacement = new Vector2(128.0f / 256.0f, 150.0f / 256.0f * HeartHeightWidthFactor);
 
-    final static Vector2 FontSizeHeartSizeCoef = new Vector2(0.046f, 0.05f);
+    final static Vector2 FontSizeHeartSizeFactor = new Vector2(0.046f, 0.05f);
     //new Vector2(0.13f, 0.13f);
 
     private OrthographicCamera camera;
@@ -129,7 +129,7 @@ class Love implements ApplicationListener, InputProcessor {
             breakingSounds.add(Gdx.audio.newSound(Gdx.files.internal("data/sound (" + i + ").ogg")));
 
         gravity = Gdx.app.getType() == ApplicationType.Android ?
-                new Vector2() : new Vector2(0, -gravityCoef / 2.5f);
+                new Vector2() : new Vector2(0, -gravityFactor / 2.5f);
         createPhysicsWorld();
         fixtureAtlas = new FixtureAtlas(Gdx.files.internal("data/hearts.bin"));
         createHearts();
@@ -236,8 +236,8 @@ class Love implements ApplicationListener, InputProcessor {
         updateBackground();
         updateSprites();
         updateParticles();
-        int renderCoef = 20;
-        if (renderFreq++ % renderCoef == 0) {
+        int renderFactor = 20;
+        if (renderFreq++ % renderFactor == 0) {
             refresh();
             renderBackground();
             renderHearts();
@@ -277,11 +277,10 @@ class Love implements ApplicationListener, InputProcessor {
         if (Gdx.app.getType() == ApplicationType.Android) {
             gravity.x = -Gdx.input.getPitch() / 90.0f;
             gravity.y = Gdx.input.getRoll() / 90.0f;
-            gravity.scl(gravityCoef);
+            gravity.scl(gravityFactor);
             world.setGravity(gravity);
         }
         world.step(Gdx.app.getGraphics().getDeltaTime(), 6, 6);
-        //world.step(Gdx.app.getGraphics().getDeltaTime(), 8, 3);
     }
 
     private void updateBackground() {
@@ -351,12 +350,6 @@ class Love implements ApplicationListener, InputProcessor {
                 bgPos.x - textureWidth / 2, bgPos.y - textureHeight / 2,
                 bgPos.x + textureWidth / 2, bgPos.y + textureHeight / 2);
         spriteBatch.end();
-        /*
-        spriteBatch.getProjectionMatrix().setToOrtho2D(0, 0,
-				WorldWidth, WorldHeight);
-		spriteBatch.begin();
-		spriteBatch.draw(backgroundTexture, 0, 0, 0, 0, 800, 480);
-		spriteBatch.end();*/
     }
 
     private void renderHearts() {
@@ -387,7 +380,7 @@ class Love implements ApplicationListener, InputProcessor {
                             + stringSize.y);
 
             spriteBatch.begin();
-            font.getData().setScale(heart.Size.x * FontSizeHeartSizeCoef.x, heart.Size.y * FontSizeHeartSizeCoef.y);
+            font.getData().setScale(heart.Size.x * FontSizeHeartSizeFactor.x, heart.Size.y * FontSizeHeartSizeFactor.y);
             font.draw(spriteBatch, heart.String, tmpVector1.x, tmpVector1.y);
             font.getData().setScale(1, 1);
             spriteBatch.end();
@@ -515,9 +508,6 @@ class Love implements ApplicationListener, InputProcessor {
         hitBody = null;
         world.QueryAABB(callback, testPoint.x - 0.0001f, testPoint.y - 0.0001f, testPoint.x + 0.0001f, testPoint.y + 0.0001f);
 
-        // TODO: Repair;
-        // if (hitBody == groundBody) hitBody = null;
-
         if (hitBody != null && hitBody.getType() == BodyType.KinematicBody)
             return false;
 
@@ -565,17 +555,17 @@ class Love implements ApplicationListener, InputProcessor {
         filter.groupIndex = 0;
 
         float newWidth = (float) Math.random() * (HeartMaxSize - HeartMinSize) + HeartMinSize;
-        float newHeight = newWidth * HeartHeightWidthCoef;
+        float newHeight = newWidth * HeartHeightWidthFactor;
 
         Vector2 size = new Vector2(newWidth, newHeight);
 
         heartBodyDef.angle = (float) (Math.atan2(gravity.y, gravity.x) + Math.PI / 2);
-        float cosa = (float) Math.cos(heartBodyDef.angle);
-        float sina = (float) Math.sin(heartBodyDef.angle);
+        float cosAngle = (float) Math.cos(heartBodyDef.angle);
+        float sinAngle = (float) Math.sin(heartBodyDef.angle);
         float dx = newWidth / 2;
         float dy = newHeight / 2;
-        float x1 = dx * cosa - dy * sina;
-        float y1 = dx * sina + dy * cosa;
+        float x1 = dx * cosAngle - dy * sinAngle;
+        float y1 = dx * sinAngle + dy * cosAngle;
 
         if (x == -1) {
             heartBodyDef.position.x =
