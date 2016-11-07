@@ -11,9 +11,6 @@ buildscript {
 }
 
 allprojects {
-    apply plugin: "eclipse"
-    apply plugin: "idea"
-
     version = '1.0'
     ext {
         appName = "Altynai"
@@ -56,8 +53,4 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
     }
-}
-
-tasks.eclipse.doLast {
-    delete ".project"
 }
