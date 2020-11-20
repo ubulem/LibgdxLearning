@@ -1,15 +1,14 @@
-<DOCTYPE>
 {
-  "version_code": 87,
-  "version_code_bad": [
-    86,
-    44,
-    45
-  ],
-  "package": "com.multicraft.game",
-  "content_ru": "<big><big><b>Версия 1.9.1</b></big><br/><ul><li>Исправлены несколько серьезных ошибок</li><li>Улучшена стабильность и быстродействие игры</li></ul><b>Пожалуйста, установите обновление!</b></big>",
-  "content_en": "<big><big><b>Version 1.9.1</b></big><br/><ul><li>Fixed a dozen different bugs</li><li>Improved game stability and performance</li></ul><b>Please install the update!</b></big>",
-  "ads_delay": 10,
-  "ads_repeat": 300,
-  "ads_enable": true
+	"version_code":110,
+	"version_code_bad": [
+		105
+	],
+	"package":"com.multicraft.game",
+	"content_en":"<big><big><b>Version 1.13</b></big><br/><ul><li>Improved game performance and reduced battery consumption</li><li>Added creating your own server for playing with friends</li></ul><b>Please install the update!</b></big>",
+	"content_ru":"<big><big><b>Версия 1.13</b></big><br/><ul><li>Увеличена производительность и снижен расход батареи</li><li>Добавлена возможность играть с друзьями на вашем собственном сервере</li></ul><b>Пожалуйста, установите обновление!</b></big>",
+	"rate_min_version_code":100,
+	"review_enable":true,
+	"ads_enable":true,
+	"ads_delay":10,
+	"ads_repeat":120
 }
