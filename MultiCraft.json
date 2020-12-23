@@ -1,7 +1,7 @@
 {
-	"version_code":110,
+	"version_code":122,
 	"version_code_bad": [
-		105
+		121
 	],
 	"package":"com.multicraft.game",
 	"content_en":"<big><big><b>Version 1.13</b></big><br/><ul><li>Improved game performance and reduced battery consumption</li><li>Added creating your own server for playing with friends</li></ul><b>Please install the update!</b></big>",
