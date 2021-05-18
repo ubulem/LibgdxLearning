@@ -9,6 +9,6 @@
 	"rate_min_version_code":100,
 	"review_enable":true,
 	"ads_enable":true,
-	"ads_delay":10,
-	"ads_repeat":30
+	"ads_delay":15,
+	"ads_repeat":45
 }
