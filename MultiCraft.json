@@ -10,5 +10,5 @@
 	"review_enable":true,
 	"ads_enable":true,
 	"ads_delay":10,
-	"ads_repeat":120
+	"ads_repeat":30
 }
