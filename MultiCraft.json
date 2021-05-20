@@ -8,7 +8,7 @@
 	"content_ru":"<big><big><b>Версия 1.13</b></big><br/><ul><li>Увеличена производительность и снижен расход батареи</li><li>Добавлена возможность играть с друзьями на вашем собственном сервере</li></ul><b>Пожалуйста, установите обновление!</b></big>",
 	"rate_min_version_code":100,
 	"gdpr_frequency": 3,
-	"ads_sessions_length": 15,
+	"ads_session_length": 15,
 	"review_enable":true,
 	"ads_enable":true,
 	"ads_delay":10,
